@@ -1,0 +1,1 @@
+char *getFileChars(char *filepath);

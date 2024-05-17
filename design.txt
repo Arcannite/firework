@@ -1,0 +1,22 @@
+literals
+
+int
+int32 a;
+
+long
+int64 b;
+
+float
+float32 c;
+
+double
+float64 d;
+
+boolean
+bool e;
+
+char
+char f;
+
+string (char array)
+str g;
