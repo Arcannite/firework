@@ -20,3 +20,29 @@ char f;
 
 string (char array)
 str g;
+
+array of type
+int32[10] intArray; 
+
+
+assignment to variables
+
+- assignment at declaration
+int32 a = 1;
+
+- mutation (variables are mutable by default)
+int32 a;
+a = 5;
+
+
+simple array operations
+
+- get the element at index of the array (automatic bounds check)
+intArray[0];
+
+
+function declaration
+
+function add : int32 (int32 param1, int32 param2) {
+    return param1 + param2
+}

@@ -12,9 +12,22 @@ int main(int argc, char **argv) {
 
     char *filepath = argv[1];
 
+    // load the file from memory, and parse it separately: leave IO ASAP
     // dynamic mem
     char *program = getFileChars(filepath);
-    puts(program);
+    
+    int progPtr = 0;
+    int tokenPtr = 0;
+    char currentChar;
+    char tokenBuf[255];
+    
+    // start parsing
+    do {
+        currentChar = program[progPtr++];
+        putchar(currentChar);
+    }
+    while (currentChar != '\0');
+
     free(program);
 
     return 0;

@@ -3,33 +3,33 @@
 #include <string.h>
 
 char *getFileChars(char *filepath) {
-    FILE *fptr;
-    fptr = fopen(filepath, "r");
-    if (!fptr) {
+    FILE *fd;
+    fd = fopen(filepath, "r");
+    if (!fd) {
         perror("The specified file was not found. Aborting.\n");
         exit(1);
     }
 
     // calculate file size
     size_t fileSize;
-    fseek(fptr, 0, SEEK_END);
-    fileSize = ftell(fptr);
-    rewind(fptr);
+    fseek(fd, 0, SEEK_END);
+    fileSize = ftell(fd);
+    rewind(fd);
 
     // load stream into buffer
     char *buf = (char *) malloc(fileSize * sizeof(char));
-    size_t ret_code = fread(buf, sizeof(buf), fileSize, fptr);
+    size_t ret_code = fread(buf, sizeof(buf), fileSize, fd);
     if (ret_code == fileSize) {
         buf[fileSize++] = '\0'; // just to make sure 
     }
     else {
-        if (feof(fptr))
+        if (feof(fd))
             printf("Error reading file: unexpected end of file\n");
-        else if (ferror(fptr))
+        else if (ferror(fd))
             perror("Error reading file");
     }
     
-    fclose(fptr);
+    fclose(fd);
     
     return buf;
 }
