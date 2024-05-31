@@ -46,3 +46,20 @@ function declaration
 function add : int32 (int32 param1, int32 param2) {
     return param1 + param2
 }
+
+
+tokens
+
+- keywords
+    - type declaration, e.g. int32
+    - function declaration, `function`
+    - `return`
+- operators
+    - assignment `=`
+    - index `[]`
+    - string literal `""`
+    - negation `!`
+    - comparison `==`, `>`, etc.
+- separators
+    - line divider `;`
+    - element separator `,`

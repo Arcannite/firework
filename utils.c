@@ -22,12 +22,10 @@ char *getFileChars(char *filepath) {
     if (ret_code == fileSize) {
         buf[fileSize++] = '\0'; // just to make sure 
     }
-    else {
-        if (feof(fd))
-            printf("Error reading file: unexpected end of file\n");
-        else if (ferror(fd))
-            perror("Error reading file");
-    }
+    else if (ferror(fd))
+        perror("Error reading file");
+        exit(1);
+    
     
     fclose(fd);
     
