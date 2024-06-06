@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include "utils.h"
 
+struct expr {
+    int opcode;
+    char *operandName1;
+    char *operandName2;
+};
+
 int main(int argc, char **argv) {
 
     // only support one input file with no options for now
@@ -22,7 +28,13 @@ int main(int argc, char **argv) {
     char tokenBuf[255];
 
     /*
-    int i = 1; (int j = 2;)
+    char * -> token
+    token -> expr
+    expr -> program
+
+    token : char *
+    expr : expr
+    program : expr
     */
     
     // start parsing
@@ -41,12 +53,11 @@ int main(int argc, char **argv) {
             // also consider the context of the current characters - they could be comments or string literals
             // ignore this case for now
 
-            tokenPtr = 0;
             switch (currentChar) {
-                case 10: printf("CR "); break; // ignore
-                case 13: printf("LF "); break; // ignore
+                case 10: tokenPtr = 0; printf("CR "); break; // ignore
+                case 13: tokenPtr = 0; printf("LF "); break; // ignore
                 case 33: printf("! "); break; // start of unary NOT, or it could be the start of binary NEQ
-                case 34: printf("\" "); break; // start of string
+                case 34: tokenPtr = 0; printf("\" "); break; // start of string
                 case 38: printf("& "); break; // start of binary AND
                 case 39: printf("' "); break; // start of string
                 case 40: printf("( "); break; // start of new expression
